@@ -1,0 +1,12 @@
+CREATE DATABASE mtuci_db;
+\c mtuci_db;
+CREATE TABLE chair(id SERIAL PRIMARY KEY, name varchar NOT NULL, deanery varchar NOT NULL);
+CREATE TABLE student_group(id SERIAL PRIMARY KEY, name varchar NOT NULL, chair integer REFERENCES chair(id));
+CREATE TABLE student(id SERIAL PRIMARY KEY, full_name varchar NOT NULL, passport varchar(10) NOT NULL, group_id integer REFERENCES student_group(id));
+INSERT INTO chair(name, deanery) VALUES('ИВТ', 'ИТ');
+INSERT INTO chair(name, deanery) VALUES('ИСТ', 'ИТ');
+INSERT INTO student_group(name, chair) VALUES('БВТ2201', 1);
+INSERT INTO student_group(name, chair) VALUES('БВТ2202', 1);
+INSERT INTO student_group(name, chair) VALUES('БСТ2201', 2);
+INSERT INTO student_group(name, chair) VALUES('БСТ2202', 2);
+INSERT INTO student(full_name, passport, group_id) VALUES('Полное Имя Студента', 0123456789, 1)
